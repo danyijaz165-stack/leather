@@ -51,14 +51,14 @@ export default function Bestsellers() {
   }
 
   return (
-    <section className="w-full bg-dark-black py-20">
+    <section className="w-full bg-dark-black py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title with Slider Buttons */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mb-8 sm:mb-12">
           {/* Left Side - Title with Lines */}
-          <div className="flex items-center justify-center gap-4 flex-1">
+          <div className="flex items-center justify-center gap-2 sm:gap-4 flex-1 w-full sm:w-auto">
             {/* Left Line - Tapered (thick to thin) with rounded ends */}
-            <svg className="w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
+            <svg className="w-12 sm:w-16 lg:w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="leftLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#C9A24D" stopOpacity="0.8" />
@@ -68,11 +68,11 @@ export default function Bestsellers() {
               </defs>
               <rect x="0" y="0" width="80" height="1" rx="0.5" fill="url(#leftLineGradient)" />
             </svg>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white text-center">
+            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center">
               Our Bestsellers
             </h2>
             {/* Right Line - Tapered (thin to thick) with rounded ends */}
-            <svg className="w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
+            <svg className="w-12 sm:w-16 lg:w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="rightLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#C9A24D" stopOpacity="0" />
@@ -88,17 +88,17 @@ export default function Bestsellers() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
-              className="p-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors"
               aria-label="Previous"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="p-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors"
               aria-label="Next"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>
         </div>
@@ -115,9 +115,9 @@ export default function Bestsellers() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex-shrink-0 w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
+              className="flex-shrink-0 w-48 sm:w-52 md:w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
             >
-              <div className="relative w-full h-40 bg-transparent overflow-hidden">
+              <div className="relative w-full h-32 sm:h-36 md:h-40 bg-transparent overflow-hidden">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -127,11 +127,11 @@ export default function Bestsellers() {
                   quality={100}
                 />
               </div>
-              <div className="p-3 text-center">
-                <h3 className="font-sans text-base font-medium text-white mb-1">
+              <div className="p-2 sm:p-3 text-center">
+                <h3 className="font-sans text-sm sm:text-base font-medium text-white mb-1">
                   {product.name}
                 </h3>
-                <p className="font-sans text-lg font-semibold text-gold">
+                <p className="font-sans text-base sm:text-lg font-semibold text-gold">
                   {product.price}
                 </p>
               </div>
@@ -143,7 +143,7 @@ export default function Bestsellers() {
         <div className="flex justify-center">
           <a
             href="#"
-            className="gold-btn rounded-lg px-8 py-3 font-sans font-semibold"
+            className="gold-btn rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 font-sans text-sm sm:text-base font-semibold"
           >
             View All Designs
           </a>

@@ -4,9 +4,9 @@ import { Footprints } from 'lucide-react'
 
 export default function Features() {
   return (
-    <section className="w-full bg-dark-charcoal border-t border-gold/50 border-b border-gold/50 py-8">
+    <section className="w-full bg-dark-charcoal border-t border-gold/50 border-b border-gold/50 py-6 sm:py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {/* Feature 1 - Leather Hide */}
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
@@ -34,10 +34,10 @@ export default function Features() {
           </div>
 
           {/* Feature 2 - Custom Fit */}
-          <div className="flex items-center gap-3 relative px-4">
+          <div className="flex items-center gap-3 relative px-2 sm:px-4">
             {/* Left and Right borders - not touching top/bottom */}
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
-            <div className="absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
+            <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
+            <div className="hidden sm:block absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
             
             <div className="flex-shrink-0">
               <Footprints className="h-8 w-8 text-gold" strokeWidth={1.5} />

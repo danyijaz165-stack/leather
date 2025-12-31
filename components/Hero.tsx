@@ -20,22 +20,22 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto px-4 sm:px-4 lg:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[400px] lg:min-h-[500px]">
           {/* Left Side - Content */}
-          <div className="space-y-6 pl-2 sm:pl-4">
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          <div className="space-y-4 sm:space-y-6 pl-2 sm:pl-4 pt-8 lg:pt-0">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Premium Custom<br />
               Leather Shoes
             </h1>
-            <p className="font-serif text-2xl sm:text-3xl text-gold italic">
+            <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-gold italic">
               Made in Pakistan
             </p>
-            <p className="font-sans text-lg text-gray-300 font-light">
+            <p className="font-sans text-base sm:text-lg text-gray-300 font-light">
               Handcrafted Perfection for the Modern Gentemna.
             </p>
             <a
               href="#"
-              className="inline-block gold-btn rounded-lg px-8 py-4 font-sans font-semibold"
+              className="inline-block gold-btn rounded-lg px-6 sm:px-8 py-3 sm:py-4 font-sans text-sm sm:text-base font-semibold"
             >
               Shop Collection
             </a>

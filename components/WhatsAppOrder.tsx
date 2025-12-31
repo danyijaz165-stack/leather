@@ -4,12 +4,12 @@ import { Ruler, Truck } from 'lucide-react'
 
 export default function WhatsAppOrder() {
   return (
-    <section className="w-full bg-dark-black border-t-[1px] border-b-[1px] border-gold/50 py-12">
+    <section className="w-full bg-dark-black border-t-[1px] border-b-[1px] border-gold/50 py-10 sm:py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
-        <div className="flex items-center justify-center gap-4 mb-4">
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4">
           {/* Left Line - Tapered (thick to thin) with rounded ends */}
-          <svg className="w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
+          <svg className="w-12 sm:w-16 lg:w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
             <defs>
               <linearGradient id="whatsappLeftLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#C9A24D" stopOpacity="0.8" />
@@ -19,11 +19,11 @@ export default function WhatsAppOrder() {
             </defs>
             <rect x="0" y="0" width="80" height="1" rx="0.5" fill="url(#whatsappLeftLineGradient)" />
           </svg>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white text-center">
             Order Now on <span className="text-gold">WhatsApp</span>
           </h2>
           {/* Right Line - Tapered (thin to thick) with rounded ends */}
-          <svg className="w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
+          <svg className="w-12 sm:w-16 lg:w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
             <defs>
               <linearGradient id="whatsappRightLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#C9A24D" stopOpacity="0" />
@@ -41,7 +41,7 @@ export default function WhatsAppOrder() {
         </p>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 border-b border-t border-gold/50 py-5 mb-12">
+        <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 border-b border-t border-gold/50 py-4 sm:py-5 mb-8 sm:mb-12">
           {/* Step 1 - Choose Design */}
           <div className="flex items-center gap-3">
             <div className="flex-shrink-0">
@@ -107,7 +107,7 @@ export default function WhatsAppOrder() {
         <div className="flex justify-center">
           <a
             href="#"
-            className="gold-btn rounded-lg px-12 py-4 font-sans text-lg font-semibold"
+            className="gold-btn rounded-lg px-8 sm:px-12 py-3 sm:py-4 font-sans text-base sm:text-lg font-semibold"
           >
             Order on WhatsApp
           </a>
