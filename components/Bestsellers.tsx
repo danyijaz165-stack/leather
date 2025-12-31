@@ -51,8 +51,8 @@ export default function Bestsellers() {
   }
 
   return (
-    <section className="w-full bg-dark-black py-12 sm:py-16 lg:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-dark-black py-10 sm:py-14 lg:py-20">
+      <div className="container mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 max-w-7xl">
         {/* Section Title with Slider Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mb-8 sm:mb-12">
           {/* Left Side - Title with Lines */}
@@ -106,7 +106,7 @@ export default function Bestsellers() {
         {/* Products Slider - Single Row */}
         <div 
           ref={scrollContainerRef}
-          className="flex gap-4 overflow-x-scroll mb-12 pb-4 -mx-4 px-4"
+          className="flex gap-3 sm:gap-4 overflow-x-scroll mb-8 sm:mb-12 pb-4 -mx-3 sm:-mx-4 px-3 sm:px-4"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none'
@@ -115,9 +115,9 @@ export default function Bestsellers() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex-shrink-0 w-48 sm:w-52 md:w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
+              className="flex-shrink-0 w-44 sm:w-48 md:w-52 lg:w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
             >
-              <div className="relative w-full h-32 sm:h-36 md:h-40 bg-transparent overflow-hidden">
+              <div className="relative w-full h-28 sm:h-32 md:h-36 lg:h-40 bg-transparent overflow-hidden">
                 <Image
                   src={product.image}
                   alt={product.name}

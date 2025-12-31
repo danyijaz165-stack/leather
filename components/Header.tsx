@@ -7,13 +7,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="w-full border-b border-card-border bg-dark-black">
-      <div className="mx-auto px-4 sm:px-4 lg:px-6">
-        <div className="flex items-center justify-between py-4">
+    <header className="w-full border-b border-card-border bg-dark-black sticky top-0 z-50">
+      <div className="mx-auto px-3 sm:px-4 lg:px-6 max-w-7xl">
+        <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Crown className="h-5 w-5 sm:h-6 sm:w-6 text-gold" fill="#C9A24D" />
-            <span className="font-serif text-lg sm:text-xl font-semibold text-gold">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Crown className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-gold" fill="#C9A24D" />
+            <span className="font-serif text-base sm:text-lg md:text-xl font-semibold text-gold">
               ROYAL LEATHER
             </span>
           </div>

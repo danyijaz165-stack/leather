@@ -4,8 +4,8 @@ import { Ruler, Truck } from 'lucide-react'
 
 export default function WhatsAppOrder() {
   return (
-    <section className="w-full bg-dark-black border-t-[1px] border-b-[1px] border-gold/50 py-10 sm:py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-dark-black border-t-[1px] border-b-[1px] border-gold/50 py-8 sm:py-10 lg:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Title */}
         <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4">
           {/* Left Line - Tapered (thick to thin) with rounded ends */}
@@ -36,17 +36,17 @@ export default function WhatsAppOrder() {
         </div>
 
         {/* Subtitle */}
-        <p className="font-sans text-lg text-gray-300 text-center mb-12">
+        <p className="font-sans text-base sm:text-lg text-gray-300 text-center mb-8 sm:mb-10 lg:mb-12">
           Get Your Perfect Shoes in 3 Easy Steps.
         </p>
 
         {/* Steps Grid */}
-        <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 border-b border-t border-gold/50 py-4 sm:py-5 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 border-b border-t border-gold/50 py-3 sm:py-4 lg:py-5 mb-6 sm:mb-8 lg:mb-12">
           {/* Step 1 - Choose Design */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
               <svg 
-                className="h-8 w-8 text-gold" 
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" 
                 fill="none" 
                 stroke="currentColor" 
                 strokeWidth="1.5" 
@@ -58,7 +58,7 @@ export default function WhatsAppOrder() {
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   Choose Your Design
                 </span>
               </div>
@@ -66,17 +66,17 @@ export default function WhatsAppOrder() {
           </div>
 
           {/* Step 2 - Send Size */}
-          <div className="flex items-center gap-3 relative px-4">
+          <div className="flex items-center gap-2 sm:gap-3 relative px-2 sm:px-4">
             {/* Left and Right borders - not touching top/bottom */}
-            <div className="absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
-            <div className="absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
+            <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
+            <div className="hidden sm:block absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
             
             <div className="flex-shrink-0">
-              <Ruler className="h-8 w-8 text-gold" />
+              <Ruler className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" />
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   Send Your Size
                 </span>
               </div>
@@ -84,13 +84,13 @@ export default function WhatsAppOrder() {
           </div>
 
           {/* Step 3 - Fast Delivery */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
-              <Truck className="h-8 w-8 text-gold" strokeWidth={1.5} />
+              <Truck className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   Get Fast Delivery
                 </span>
               </div>

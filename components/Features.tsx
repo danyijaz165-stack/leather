@@ -4,14 +4,14 @@ import { Footprints } from 'lucide-react'
 
 export default function Features() {
   return (
-    <section className="w-full bg-dark-charcoal border-t border-gold/50 border-b border-gold/50 py-6 sm:py-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+    <section className="w-full bg-dark-charcoal border-t border-gold/50 border-b border-gold/50 py-4 sm:py-6 lg:py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12">
           {/* Feature 1 - Leather Hide */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
               <svg 
-                className="h-8 w-8 text-gold" 
+                className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" 
                 fill="none" 
                 stroke="currentColor" 
                 strokeWidth="1.5" 
@@ -23,7 +23,7 @@ export default function Features() {
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   100% Genuine Leather
                 </span>
                 <span className="font-sans text-xs text-text-grey leading-tight">
@@ -34,17 +34,17 @@ export default function Features() {
           </div>
 
           {/* Feature 2 - Custom Fit */}
-          <div className="flex items-center gap-3 relative px-2 sm:px-4">
+          <div className="flex items-center gap-2 sm:gap-3 relative px-2 sm:px-4">
             {/* Left and Right borders - not touching top/bottom */}
             <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
             <div className="hidden sm:block absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
             
             <div className="flex-shrink-0">
-              <Footprints className="h-8 w-8 text-gold" strokeWidth={1.5} />
+              <Footprints className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" strokeWidth={1.5} />
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   Custom Fit & Design
                 </span>
                 <span className="font-sans text-xs text-text-grey leading-tight">
@@ -55,15 +55,15 @@ export default function Features() {
           </div>
 
           {/* Feature 3 - COD */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
-              <div className="h-8 w-8 flex items-center justify-center">
-                <span className="text-gold font-bold text-xs">COD</span>
+              <div className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 flex items-center justify-center">
+                <span className="text-gold font-bold text-[10px] sm:text-xs">COD</span>
               </div>
             </div>
             <div className="flex-1">
               <div className="flex flex-col">
-                <span className="font-sans text-base font-semibold text-white leading-tight">
+                <span className="font-sans text-sm sm:text-base font-semibold text-white leading-tight">
                   Cash on Delivery
                 </span>
                 <span className="font-sans text-xs text-text-grey leading-tight">
