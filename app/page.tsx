@@ -6,7 +6,7 @@ import WhatsAppOrder from '@/components/WhatsAppOrder'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-dark-black">
+    <main className="min-h-screen">
       <Header />
       <Hero />
       <Features />

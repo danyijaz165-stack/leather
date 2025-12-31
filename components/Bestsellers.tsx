@@ -115,15 +115,15 @@ export default function Bestsellers() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex-shrink-0 w-44 sm:w-48 md:w-52 lg:w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
+              className="flex-shrink-0 w-[180px] sm:w-48 md:w-52 lg:w-56 bg-card-bg border border-card-border rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.3)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.4)] transition-shadow"
             >
-              <div className="relative w-full h-28 sm:h-32 md:h-36 lg:h-40 bg-transparent overflow-hidden">
+              <div className="relative w-full h-32 sm:h-36 md:h-40 lg:h-44 bg-transparent overflow-hidden">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  sizes="256px"
-                  className="object-cover object-top scale-110"
+                  sizes="(max-width: 640px) 176px, (max-width: 768px) 192px, (max-width: 1024px) 208px, 224px"
+                  className="object-contain object-center"
                   quality={100}
                 />
               </div>
@@ -140,10 +140,10 @@ export default function Bestsellers() {
         </div>
 
         {/* View All Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center px-4">
           <a
             href="#"
-            className="gold-btn rounded-lg px-6 sm:px-8 py-2.5 sm:py-3 font-sans text-sm sm:text-base font-semibold"
+            className="gold-btn rounded-lg px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 lg:py-3.5 font-sans text-sm sm:text-base lg:text-lg font-semibold whitespace-nowrap w-full sm:w-auto text-center"
           >
             View All Designs
           </a>

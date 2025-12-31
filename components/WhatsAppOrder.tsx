@@ -41,7 +41,7 @@ export default function WhatsAppOrder() {
         </p>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 border-b border-t border-gold/50 py-3 sm:py-4 lg:py-5 mb-6 sm:mb-8 lg:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 border-b border-t border-gold/50 py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 lg:mb-12">
           {/* Step 1 - Choose Design */}
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
@@ -98,16 +98,11 @@ export default function WhatsAppOrder() {
           </div>
         </div>
 
-        {/* Gold Line Separator */}
-        <div className="flex justify-center mb-8">
-          <div className="h-px w-32 bg-gold/50"></div>
-        </div>
-
         {/* Final CTA Button */}
-        <div className="flex justify-center">
+        <div className="flex justify-center px-4">
           <a
             href="#"
-            className="gold-btn rounded-lg px-8 sm:px-12 py-3 sm:py-4 font-sans text-base sm:text-lg font-semibold"
+            className="gold-btn rounded-lg px-6 sm:px-10 lg:px-12 py-2.5 sm:py-3 lg:py-4 font-sans text-sm sm:text-base lg:text-lg font-semibold whitespace-nowrap w-full sm:w-auto text-center"
           >
             Order on WhatsApp
           </a>
