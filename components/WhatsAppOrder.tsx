@@ -41,7 +41,8 @@ export default function WhatsAppOrder() {
         </p>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 border-b border-t border-gold/50 py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-14 mb-6 sm:mb-8 lg:mb-12">
+        <div className="flex justify-center mb-6 sm:mb-8 lg:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 border-b border-t border-gold/50 py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-14 w-full max-w-5xl">
           {/* Step 1 - Choose Design */}
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex-shrink-0">
@@ -95,6 +96,7 @@ export default function WhatsAppOrder() {
                 </span>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
