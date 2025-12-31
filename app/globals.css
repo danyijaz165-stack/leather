@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* WEBSITE BACKGROUND — SAME AS IMAGE */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(
+    circle at right,
+    #1a1a1a 0%,
+    #0b0b0b 65%
+  );
+  color: #EAEAEA;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Gold Button Styles - Exact Image Match */
+.gold-btn {
+  background: linear-gradient(135deg, #E6C67A 0%, #C9A24D 45%, #B8892E 100%);
+  color: #0B0B0B;
+  box-shadow: 0 8px 25px rgba(201,162,77,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+  transition: all 0.3s ease;
+}
+
+.gold-btn:hover {
+  box-shadow: 0 10px 30px rgba(201,162,77,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
+  transform: translateY(-1px);
+}
+
+/* Hide scrollbar for slider */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for overflow-x-scroll */
+.overflow-x-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
