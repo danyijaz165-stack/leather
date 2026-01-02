@@ -1,10 +1,23 @@
 'use client'
 
-import { useState } from 'react'
-import { Crown, Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { Crown, Menu, X, ShoppingCart } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [cartCount, setCartCount] = useState(0)
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+      setCartCount(cart.length)
+    }
+    updateCartCount()
+    // Update cart count when storage changes
+    window.addEventListener('storage', updateCartCount)
+    return () => window.removeEventListener('storage', updateCartCount)
+  }, [])
 
   return (
     <header className="w-full border-b border-card-border bg-dark-black sticky top-0 z-50">
@@ -20,27 +33,49 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="#" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
+            <a href="/" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
               Home
             </a>
-            <a href="#" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
+            <a href="#bestsellers" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
               Shop
             </a>
-            <a href="#" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
-              About
-            </a>
-            <a href="#" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
-              Contact
-            </a>
+            <Link href="/catalog" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
+              Catalog
+            </Link>
           </nav>
 
-          {/* Desktop WhatsApp Button */}
-          <a
-            href="#"
-            className="hidden sm:inline-block gold-btn rounded-lg px-4 lg:px-6 py-2 lg:py-2.5 font-sans text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap"
-          >
-            Order on WhatsApp
-          </a>
+          {/* Desktop Cart & Buttons */}
+          <div className="hidden sm:flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/cart"
+              className="relative p-2 text-gold hover:text-gold-bright transition-colors"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gold text-dark-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+            <Link
+              href="/login"
+              className="px-3 sm:px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-xs sm:text-sm font-medium whitespace-nowrap"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="px-3 sm:px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-xs sm:text-sm font-medium whitespace-nowrap"
+            >
+              Sign Up
+            </Link>
+            <a
+              href="#"
+              className="gold-btn rounded-lg px-4 lg:px-6 py-2 lg:py-2.5 font-sans text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap"
+            >
+              Order on WhatsApp
+            </a>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -56,18 +91,29 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-card-border py-4">
             <nav className="flex flex-col gap-4">
-              <a href="#" className="font-serif text-off-white hover:text-gold transition-colors">
+              <a href="/" className="font-serif text-off-white hover:text-gold transition-colors">
                 Home
               </a>
-              <a href="#" className="font-serif text-off-white hover:text-gold transition-colors">
+              <a href="#bestsellers" className="font-serif text-off-white hover:text-gold transition-colors">
                 Shop
               </a>
-              <a href="#" className="font-serif text-off-white hover:text-gold transition-colors">
-                About
-              </a>
-              <a href="#" className="font-serif text-off-white hover:text-gold transition-colors">
-                Contact
-              </a>
+              <Link href="/catalog" className="font-serif text-off-white hover:text-gold transition-colors">
+                Catalog
+              </Link>
+              <div className="flex gap-3">
+                <Link
+                  href="/login"
+                  className="flex-1 px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-sm font-medium text-center"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="flex-1 px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-sm font-medium text-center"
+                >
+                  Sign Up
+                </Link>
+              </div>
               <a
                 href="#"
                 className="gold-btn rounded-lg px-6 py-2.5 font-sans font-medium text-center"

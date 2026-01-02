@@ -5,9 +5,10 @@ import { Ruler, Truck } from 'lucide-react'
 export default function WhatsAppOrder() {
   return (
     <section className="w-full bg-dark-black border-t-[1px] border-b-[1px] border-gold/50 py-8 sm:py-10 lg:py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Section Title */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex justify-center">
+        <div className="w-full max-w-5xl">
+          {/* Section Title */}
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mb-4">
           {/* Left Line - Tapered (thick to thin) with rounded ends */}
           <svg className="w-12 sm:w-16 lg:w-20 h-px" viewBox="0 0 80 1" preserveAspectRatio="none">
             <defs>
@@ -108,6 +109,7 @@ export default function WhatsAppOrder() {
           >
             Order on WhatsApp
           </a>
+        </div>
         </div>
       </div>
     </section>

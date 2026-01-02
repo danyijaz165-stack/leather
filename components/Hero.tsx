@@ -1,6 +1,18 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
+  // Auto-slider for hero (if multiple images in future)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // For now, just a placeholder for future multiple images
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
   return (
     <section className="relative w-full min-h-[450px] sm:min-h-[500px] lg:min-h-[600px] py-6 sm:py-10 lg:py-16 overflow-hidden">
       {/* Background Image */}
@@ -35,7 +47,7 @@ export default function Hero() {
             </p>
             <div className="flex justify-center lg:justify-start">
               <a
-                href="#"
+                href="/catalog"
                 className="inline-block gold-btn rounded-lg px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 font-sans text-sm sm:text-base lg:text-lg font-semibold whitespace-nowrap"
               >
                 Shop Collection

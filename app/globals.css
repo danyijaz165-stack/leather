@@ -71,3 +71,15 @@ body {
   width: 0;
   height: 0;
 }
+
+/* Hide scrollbar for overflow-x-hidden */
+.overflow-x-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.overflow-x-hidden::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
