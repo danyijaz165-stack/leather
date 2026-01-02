@@ -8,19 +8,34 @@ import WhatsAppOrder from '@/components/WhatsAppOrder'
 import AutoProductSlider from '@/components/AutoProductSlider'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
+import ScrollAnimation from '@/components/ScrollAnimation'
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Header />
       <Hero />
-      <Features />
-      <Bestsellers />
-      <Reviews />
-      <Testimonials />
-      <WhatsAppOrder />
-      <AutoProductSlider />
-      <CTASection />
+      <ScrollAnimation direction="up">
+        <Features />
+      </ScrollAnimation>
+      <ScrollAnimation direction="left">
+        <Bestsellers />
+      </ScrollAnimation>
+      <ScrollAnimation direction="right">
+        <Reviews />
+      </ScrollAnimation>
+      <ScrollAnimation direction="up">
+        <Testimonials />
+      </ScrollAnimation>
+      <ScrollAnimation direction="left">
+        <WhatsAppOrder />
+      </ScrollAnimation>
+      <ScrollAnimation direction="right">
+        <AutoProductSlider />
+      </ScrollAnimation>
+      <ScrollAnimation direction="up">
+        <CTASection />
+      </ScrollAnimation>
       <Footer />
     </main>
   )

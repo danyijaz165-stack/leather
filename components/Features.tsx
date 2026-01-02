@@ -20,10 +20,10 @@ export default function Features() {
         <div className="w-full max-w-5xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12">
             {/* Feature 1 - Leather Hide */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 p-3 rounded-lg hover:bg-dark-black/30 transition-all duration-300 group">
+              <div className="flex-shrink-0 icon-hover">
                 <svg 
-                  className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" 
+                  className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold group-hover:drop-shadow-[0_0_8px_rgba(201,162,77,0.6)] transition-all" 
                   fill="none" 
                   stroke="currentColor" 
                   strokeWidth="1.5" 
@@ -46,13 +46,13 @@ export default function Features() {
             </div>
 
             {/* Feature 2 - Custom Fit */}
-            <div className="flex items-center gap-2 sm:gap-3 relative px-2 sm:px-4">
+            <div className="flex items-center gap-2 sm:gap-3 relative px-2 sm:px-4 p-3 rounded-lg hover:bg-dark-black/30 transition-all duration-300 group">
               {/* Left and Right borders - not touching top/bottom */}
-              <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gold/50"></div>
-              <div className="hidden sm:block absolute right-0 top-2 bottom-2 w-px bg-gold/50"></div>
+              <div className="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gold/50 group-hover:bg-gold transition-colors"></div>
+              <div className="hidden sm:block absolute right-0 top-2 bottom-2 w-px bg-gold/50 group-hover:bg-gold transition-colors"></div>
               
-              <div className="flex-shrink-0">
-                <Footprints className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold" strokeWidth={1.5} />
+              <div className="flex-shrink-0 icon-hover">
+                <Footprints className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-gold group-hover:drop-shadow-[0_0_8px_rgba(201,162,77,0.6)] transition-all" strokeWidth={1.5} />
               </div>
               <div className="flex-1">
                 <div className="flex flex-col">
@@ -67,10 +67,10 @@ export default function Features() {
             </div>
 
             {/* Feature 3 - COD */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="flex-shrink-0">
-                <div className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 flex items-center justify-center">
-                  <span className="text-gold font-bold text-[10px] sm:text-xs">COD</span>
+            <div className="flex items-center gap-2 sm:gap-3 p-3 rounded-lg hover:bg-dark-black/30 transition-all duration-300 group">
+              <div className="flex-shrink-0 icon-hover">
+                <div className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 flex items-center justify-center rounded border border-gold/30 group-hover:border-gold group-hover:bg-gold/10 transition-all">
+                  <span className="text-gold group-hover:scale-110 transition-transform font-bold text-[10px] sm:text-xs">COD</span>
                 </div>
               </div>
               <div className="flex-1">

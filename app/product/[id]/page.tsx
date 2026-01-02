@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
+import OrderForm from '@/components/OrderForm'
 import { ArrowLeft, Star, ShoppingCart, Heart } from 'lucide-react'
 
 // Product data - in real app, fetch from API
@@ -108,6 +109,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState(1)
   const [isFavourite, setIsFavourite] = useState(false)
+  const [showOrderForm, setShowOrderForm] = useState(false)
 
   useEffect(() => {
     const favourites = JSON.parse(localStorage.getItem('favourites') || '[]')
@@ -153,17 +155,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
       alert('Please select a size')
       return
     }
-    // Add to cart and go to checkout
-    const cartItem = {
-      ...product,
-      size: selectedSize,
-      quantity,
-    }
-    const existingCart = JSON.parse(localStorage.getItem('cart') || '[]')
-    existingCart.push(cartItem)
-    localStorage.setItem('cart', JSON.stringify(existingCart))
-    window.dispatchEvent(new Event('cartUpdated'))
-    router.push('/cart')
+    setShowOrderForm(true)
   }
 
   const toggleFavourite = () => {
@@ -337,6 +329,16 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
           </div>
         </div>
       </section>
+
+      {/* Order Form Modal */}
+      {showOrderForm && (
+        <OrderForm
+          product={product}
+          selectedSize={selectedSize}
+          quantity={quantity}
+          onClose={() => setShowOrderForm(false)}
+        />
+      )}
     </main>
   )
 }

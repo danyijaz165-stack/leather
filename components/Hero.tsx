@@ -35,11 +35,11 @@ export default function Hero() {
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center justify-center min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
           {/* Left Side - Content */}
           <div className="w-full space-y-3 sm:space-y-4 lg:space-y-6 pt-4 sm:pt-6 lg:pt-0 text-center lg:text-left">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight section-title">
               Premium Custom<br />
               Leather Shoes
             </h1>
-            <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-gold italic">
+            <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-gold italic drop-shadow-[0_0_10px_rgba(201,162,77,0.5)]">
               Made in Pakistan
             </p>
             <p className="font-sans text-sm sm:text-base lg:text-lg text-gray-300 font-light max-w-md mx-auto lg:mx-0">

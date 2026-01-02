@@ -70,19 +70,19 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="font-serif text-lg font-bold text-white">Customer Service</h3>
             <nav className="flex flex-col gap-3">
-              <Link href="#" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
+              <Link href="/about" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
                 About Us
               </Link>
-              <Link href="#" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
+              <Link href="/shipping-returns" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
                 Shipping & Returns
               </Link>
-              <Link href="#" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
+              <Link href="/size-guide" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
                 Size Guide
               </Link>
-              <Link href="#" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
+              <Link href="/faq" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
                 FAQ
               </Link>
-              <Link href="#" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
+              <Link href="/contact" className="font-sans text-sm text-text-grey hover:text-gold transition-colors">
                 Contact Us
               </Link>
             </nav>
