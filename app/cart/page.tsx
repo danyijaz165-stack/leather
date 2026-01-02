@@ -31,6 +31,8 @@ export default function CartPage() {
     const updatedCart = cartItems.filter((_, i) => i !== index)
     setCartItems(updatedCart)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
+    // Dispatch event to update navbar cart count
+    window.dispatchEvent(new Event('cartUpdated'))
   }
 
   const updateQuantity = (index: number, newQuantity: number) => {
@@ -39,6 +41,8 @@ export default function CartPage() {
     updatedCart[index].quantity = newQuantity
     setCartItems(updatedCart)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
+    // Dispatch event to update navbar cart count
+    window.dispatchEvent(new Event('cartUpdated'))
   }
 
   const calculateTotal = () => {

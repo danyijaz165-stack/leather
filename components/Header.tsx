@@ -2,25 +2,66 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Crown, Menu, X, ShoppingCart } from 'lucide-react'
+import { Crown, Menu, X, ShoppingCart, Heart } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
+  const [favouritesCount, setFavouritesCount] = useState(0)
 
   useEffect(() => {
     const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]')
-      setCartCount(cart.length)
+      try {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+        setCartCount(cart.length)
+      } catch (error) {
+        setCartCount(0)
+      }
     }
+
+    const updateFavouritesCount = () => {
+      try {
+        const favourites = JSON.parse(localStorage.getItem('favourites') || '[]')
+        setFavouritesCount(favourites.length)
+      } catch (error) {
+        setFavouritesCount(0)
+      }
+    }
+    
     updateCartCount()
-    // Update cart count when storage changes
-    window.addEventListener('storage', updateCartCount)
-    return () => window.removeEventListener('storage', updateCartCount)
+    updateFavouritesCount()
+    
+    // Listen for custom cart update events
+    const handleCartUpdate = () => updateCartCount()
+    const handleFavouritesUpdate = () => updateFavouritesCount()
+    
+    window.addEventListener('cartUpdated', handleCartUpdate)
+    window.addEventListener('favouritesUpdated', handleFavouritesUpdate)
+    window.addEventListener('storage', () => {
+      updateCartCount()
+      updateFavouritesCount()
+    })
+    
+    // Also check periodically (for same-tab updates)
+    const interval = setInterval(() => {
+      updateCartCount()
+      updateFavouritesCount()
+    }, 1000)
+    
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate)
+      window.removeEventListener('favouritesUpdated', handleFavouritesUpdate)
+      clearInterval(interval)
+    }
   }, [])
 
+  const whatsappNumber = '03149339180'
+  const whatsappMessage = 'Hello! I would like to place an order.'
+  const whatsappUrl = `https://wa.me/92${whatsappNumber.replace(/^0/, '')}?text=${encodeURIComponent(whatsappMessage)}`
+
   return (
-    <header className="w-full border-b border-card-border bg-dark-black sticky top-0 z-50">
+    <header className="w-full border-b border-card-border bg-dark-black sticky top-0 z-50 backdrop-blur-sm bg-dark-black/95">
       <div className="mx-auto px-3 sm:px-4 lg:px-6 max-w-7xl">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
@@ -33,9 +74,9 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="/" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
+            <Link href="/" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
               Home
-            </a>
+            </Link>
             <a href="#bestsellers" className="font-serif text-sm lg:text-base text-off-white hover:text-gold transition-colors">
               Shop
             </a>
@@ -46,6 +87,17 @@ export default function Header() {
 
           {/* Desktop Cart & Buttons */}
           <div className="hidden sm:flex items-center gap-2 sm:gap-3">
+            <Link
+              href="/favourites"
+              className="relative p-2 text-gold hover:text-gold-bright transition-colors"
+            >
+              <Heart className="h-5 w-5" />
+              {favouritesCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gold text-dark-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {favouritesCount}
+                </span>
+              )}
+            </Link>
             <Link
               href="/cart"
               className="relative p-2 text-gold hover:text-gold-bright transition-colors"
@@ -63,17 +115,15 @@ export default function Header() {
             >
               Login
             </Link>
-            <Link
-              href="/signup"
-              className="px-3 sm:px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-xs sm:text-sm font-medium whitespace-nowrap"
-            >
-              Sign Up
-            </Link>
             <a
-              href="#"
-              className="gold-btn rounded-lg px-4 lg:px-6 py-2 lg:py-2.5 font-sans text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gold-btn rounded-lg px-3 sm:px-4 lg:px-6 py-2 lg:py-2.5 font-sans text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap flex items-center gap-2"
             >
-              Order on WhatsApp
+              <FaWhatsapp className="h-4 w-4 sm:h-5 sm:w-5 text-[#25D366]" />
+              <span className="hidden sm:inline">Order on WhatsApp</span>
+              <span className="sm:hidden">WhatsApp</span>
             </a>
           </div>
 
@@ -91,33 +141,68 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-card-border py-4">
             <nav className="flex flex-col gap-4">
-              <a href="/" className="font-serif text-off-white hover:text-gold transition-colors">
+              <Link 
+                href="/" 
+                onClick={() => setIsMenuOpen(false)}
+                className="font-serif text-off-white hover:text-gold transition-colors"
+              >
                 Home
-              </a>
-              <a href="#bestsellers" className="font-serif text-off-white hover:text-gold transition-colors">
+              </Link>
+              <a 
+                href="#bestsellers" 
+                onClick={() => setIsMenuOpen(false)}
+                className="font-serif text-off-white hover:text-gold transition-colors"
+              >
                 Shop
               </a>
-              <Link href="/catalog" className="font-serif text-off-white hover:text-gold transition-colors">
+              <Link 
+                href="/catalog" 
+                onClick={() => setIsMenuOpen(false)}
+                className="font-serif text-off-white hover:text-gold transition-colors"
+              >
                 Catalog
               </Link>
-              <div className="flex gap-3">
-                <Link
-                  href="/login"
-                  className="flex-1 px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-sm font-medium text-center"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/signup"
-                  className="flex-1 px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-sm font-medium text-center"
-                >
-                  Sign Up
-                </Link>
-              </div>
-              <a
-                href="#"
-                className="gold-btn rounded-lg px-6 py-2.5 font-sans font-medium text-center"
+              <Link
+                href="/favourites"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-2 font-serif text-off-white hover:text-gold transition-colors"
               >
+                <Heart className="h-5 w-5" />
+                <span>Favourites</span>
+                {favouritesCount > 0 && (
+                  <span className="bg-gold text-dark-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {favouritesCount}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/cart"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-2 font-serif text-off-white hover:text-gold transition-colors"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                <span>Cart</span>
+                {cartCount > 0 && (
+                  <span className="bg-gold text-dark-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+              <Link
+                href="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="px-4 py-2 rounded-lg bg-card-bg border border-card-border text-gold hover:bg-gold hover:text-dark-black transition-colors font-sans text-sm font-medium text-center"
+              >
+                Login
+              </Link>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="gold-btn rounded-lg px-6 py-2.5 font-sans font-medium text-center flex items-center justify-center gap-2"
+              >
+                <FaWhatsapp className="h-5 w-5 text-[#25D366]" />
                 Order on WhatsApp
               </a>
             </nav>

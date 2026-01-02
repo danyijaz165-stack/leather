@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -107,6 +107,12 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   const product = products[productId as keyof typeof products]
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [quantity, setQuantity] = useState(1)
+  const [isFavourite, setIsFavourite] = useState(false)
+
+  useEffect(() => {
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]')
+    setIsFavourite(favourites.some((fav: any) => fav.id === productId))
+  }, [productId])
 
   if (!product) {
     return (
@@ -137,7 +143,41 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     const existingCart = JSON.parse(localStorage.getItem('cart') || '[]')
     existingCart.push(cartItem)
     localStorage.setItem('cart', JSON.stringify(existingCart))
+    // Dispatch event to update navbar cart count
+    window.dispatchEvent(new Event('cartUpdated'))
     router.push('/cart')
+  }
+
+  const handleBuyNow = () => {
+    if (!selectedSize) {
+      alert('Please select a size')
+      return
+    }
+    // Add to cart and go to checkout
+    const cartItem = {
+      ...product,
+      size: selectedSize,
+      quantity,
+    }
+    const existingCart = JSON.parse(localStorage.getItem('cart') || '[]')
+    existingCart.push(cartItem)
+    localStorage.setItem('cart', JSON.stringify(existingCart))
+    window.dispatchEvent(new Event('cartUpdated'))
+    router.push('/cart')
+  }
+
+  const toggleFavourite = () => {
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]')
+    if (isFavourite) {
+      const updated = favourites.filter((fav: any) => fav.id !== productId)
+      localStorage.setItem('favourites', JSON.stringify(updated))
+      setIsFavourite(false)
+    } else {
+      favourites.push(product)
+      localStorage.setItem('favourites', JSON.stringify(favourites))
+      setIsFavourite(true)
+    }
+    window.dispatchEvent(new Event('favouritesUpdated'))
   }
 
   return (
@@ -266,17 +306,32 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 gold-btn rounded-lg px-6 py-3 font-sans text-base font-semibold flex items-center justify-center gap-2"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  Add to Cart
-                </button>
-                <button className="px-6 py-3 bg-card-bg border border-card-border rounded-lg text-gold hover:bg-gold hover:text-dark-black transition-colors">
-                  <Heart className="h-5 w-5" />
-                </button>
+              <div className="flex flex-col gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    onClick={handleBuyNow}
+                    className="flex-1 gold-btn rounded-lg px-6 py-3 font-sans text-base font-semibold"
+                  >
+                    Buy Now
+                  </button>
+                  <button
+                    onClick={handleAddToCart}
+                    className="flex-1 bg-card-bg border border-card-border rounded-lg px-6 py-3 font-sans text-base font-semibold text-white hover:bg-gold hover:text-dark-black transition-colors flex items-center justify-center gap-2"
+                  >
+                    <ShoppingCart className="h-5 w-5" />
+                    Add to Cart
+                  </button>
+                  <button 
+                    onClick={toggleFavourite}
+                    className={`px-6 py-3 rounded-lg border transition-colors ${
+                      isFavourite
+                        ? 'bg-gold border-gold text-dark-black'
+                        : 'bg-card-bg border-card-border text-gold hover:bg-gold hover:text-dark-black'
+                    }`}
+                  >
+                    <Heart className={`h-5 w-5 ${isFavourite ? 'fill-current' : ''}`} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
