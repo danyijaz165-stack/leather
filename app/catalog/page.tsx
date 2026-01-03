@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { Filter, Grid, List } from 'lucide-react'
+import { Filter, Grid, List, Search, X } from 'lucide-react'
 
 const allProducts = [
   {
@@ -53,6 +53,15 @@ const allProducts = [
     category: 'Premium',
     rating: 4.9,
   },
+  {
+    id: 6,
+    name: 'Luxury Formal Shoes',
+    price: 'PKR 21,000',
+    originalPrice: 'PKR 23,000',
+    image: '/WhatsApp Image 2026-01-03 at 3.47.27 PM.jpeg',
+    category: 'Premium',
+    rating: 4.8,
+  },
 ]
 
 const categories = ['All', 'Oxford', 'Loafers', 'Brogue', 'Monk Strap', 'Premium']
@@ -60,10 +69,70 @@ const categories = ['All', 'Oxford', 'Loafers', 'Brogue', 'Monk Strap', 'Premium
 export default function CatalogPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
+  const [showRecentSearches, setShowRecentSearches] = useState(false)
 
-  const filteredProducts = selectedCategory === 'All' 
-    ? allProducts 
-    : allProducts.filter(product => product.category === selectedCategory)
+  useEffect(() => {
+    // Get search query from URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      const searchParam = params.get('search')
+      if (searchParam) {
+        setSearchQuery(searchParam)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    // Load recent searches from localStorage
+    const saved = localStorage.getItem('recentSearches')
+    if (saved) {
+      setRecentSearches(JSON.parse(saved))
+    }
+  }, [])
+
+  useEffect(() => {
+    // Close recent searches when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.search-container')) {
+        setShowRecentSearches(false)
+      }
+    }
+    if (showRecentSearches) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [showRecentSearches])
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    if (query.trim()) {
+      const updated = [query, ...recentSearches.filter(s => s !== query)].slice(0, 5)
+      setRecentSearches(updated)
+      localStorage.setItem('recentSearches', JSON.stringify(updated))
+    }
+    setShowRecentSearches(false)
+  }
+
+  const clearRecentSearches = () => {
+    setRecentSearches([])
+    localStorage.removeItem('recentSearches')
+  }
+
+  const filteredProducts = (() => {
+    let products = selectedCategory === 'All' 
+      ? allProducts 
+      : allProducts.filter(product => product.category === selectedCategory)
+    
+    if (searchQuery.trim()) {
+      products = products.filter(product => 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    }
+    return products
+  })()
 
   return (
     <main className="min-h-screen">
@@ -78,6 +147,59 @@ export default function CatalogPage() {
             <p className="font-sans text-base sm:text-lg text-text-grey">
               Browse our complete collection of premium leather shoes
             </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="mb-6 relative search-container">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-text-grey" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  setShowRecentSearches(true)
+                }}
+                onFocus={() => setShowRecentSearches(true)}
+                placeholder="Search products by name..."
+                className="w-full pl-12 pr-4 py-3 bg-card-bg border border-card-border rounded-lg text-white placeholder-text-grey focus:outline-none focus:border-gold transition-colors"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => {
+                    setSearchQuery('')
+                    setShowRecentSearches(false)
+                  }}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-text-grey hover:text-white"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+            
+            {/* Recent Searches Dropdown */}
+            {showRecentSearches && recentSearches.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-card-bg border border-card-border rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+                <div className="p-2 flex items-center justify-between border-b border-card-border">
+                  <span className="font-sans text-xs text-text-grey">Recent Searches</span>
+                  <button
+                    onClick={clearRecentSearches}
+                    className="font-sans text-xs text-text-grey hover:text-white"
+                  >
+                    Clear
+                  </button>
+                </div>
+                {recentSearches.map((search, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSearch(search)}
+                    className="w-full text-left px-4 py-2 hover:bg-dark-black transition-colors font-sans text-sm text-white"
+                  >
+                    {search}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Filters and View Toggle */}

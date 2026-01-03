@@ -121,7 +121,7 @@ export default function Header() {
               rel="noopener noreferrer"
               className="gold-btn rounded-lg px-3 sm:px-4 lg:px-6 py-2 lg:py-2.5 font-sans text-xs sm:text-sm lg:text-base font-medium whitespace-nowrap flex items-center gap-2"
             >
-              <FaWhatsapp className="h-4 w-4 sm:h-5 sm:w-5 text-[#25D366]" />
+              <FaWhatsapp className="h-4 w-4 sm:h-5 sm:w-5 text-black" />
               <span className="hidden sm:inline">Order on WhatsApp</span>
               <span className="sm:hidden">WhatsApp</span>
             </a>

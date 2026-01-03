@@ -48,6 +48,12 @@ const products = [
     price: 'PKR 15,500',
     image: '/jj.jpeg',
   },
+  {
+    id: 6,
+    name: 'Luxury Formal Shoes',
+    price: 'PKR 21,000',
+    image: '/WhatsApp Image 2026-01-03 at 3.47.27 PM.jpeg',
+  },
 ]
 
 export default function Bestsellers() {

@@ -12,11 +12,12 @@ interface OrderFormProps {
     image: string
   }
   selectedSize: string
+  selectedColor?: string
   quantity: number
   onClose: () => void
 }
 
-export default function OrderForm({ product, selectedSize, quantity, onClose }: OrderFormProps) {
+export default function OrderForm({ product, selectedSize, selectedColor, quantity, onClose }: OrderFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -109,6 +110,7 @@ export default function OrderForm({ product, selectedSize, quantity, onClose }: 
               </div>
               <div className="flex-1">
                 <h4 className="font-serif text-lg font-bold text-white mb-2">{product.name}</h4>
+                {selectedColor && <p className="font-sans text-sm text-text-grey mb-1">Color: {selectedColor}</p>}
                 <p className="font-sans text-sm text-text-grey mb-1">Size: {selectedSize}</p>
                 <p className="font-sans text-sm text-text-grey mb-2">Quantity: {quantity}</p>
                 <p className="font-sans text-xl font-semibold text-gold">{product.price}</p>

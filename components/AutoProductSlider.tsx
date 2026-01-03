@@ -37,9 +37,9 @@ const products = [
   },
   {
     id: 6,
-    name: 'Elegant Black Formal',
-    price: 'PKR 20,000',
-    image: '/WhatsApp Image 2025-12-31 at 12.21.20 AM.jpeg',
+    name: 'Luxury Formal Shoes',
+    price: 'PKR 21,000',
+    image: '/WhatsApp Image 2026-01-03 at 3.47.27 PM.jpeg',
   },
   {
     id: 7,
