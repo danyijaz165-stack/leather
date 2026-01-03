@@ -299,9 +299,20 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
                   </div>
                 </div>
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="font-sans text-3xl font-bold text-gold">
-                    {product.price}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-3xl font-bold text-gold">
+                      {(() => {
+                        const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                        const totalPrice = priceNum * quantity
+                        return `PKR ${totalPrice.toLocaleString('en-PK')}`
+                      })()}
+                    </span>
+                    {quantity > 1 && (
+                      <span className="font-sans text-sm text-text-grey">
+                        {product.price} × {quantity}
+                      </span>
+                    )}
+                  </div>
                   <span className="font-sans text-xl text-text-grey line-through">
                     {product.originalPrice}
                   </span>

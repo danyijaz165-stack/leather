@@ -113,22 +113,66 @@ export default function OrderForm({ product, selectedSize, selectedColor, quanti
                 {selectedColor && <p className="font-sans text-sm text-text-grey mb-1">Color: {selectedColor}</p>}
                 <p className="font-sans text-sm text-text-grey mb-1">Size: {selectedSize}</p>
                 <p className="font-sans text-sm text-text-grey mb-2">Quantity: {quantity}</p>
-                <p className="font-sans text-xl font-semibold text-gold">{product.price}</p>
+                <p className="font-sans text-xl font-semibold text-gold">
+                  {(() => {
+                    const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                    const totalPrice = priceNum * quantity
+                    return `PKR ${totalPrice.toLocaleString('en-PK')}`
+                  })()}
+                </p>
               </div>
             </div>
             <div className="border-t border-card-border pt-4">
               <div className="flex justify-between mb-2">
                 <span className="font-sans text-sm text-text-grey">Subtotal</span>
-                <span className="font-sans text-sm text-white">{product.price}</span>
+                <span className="font-sans text-sm text-white">
+                  {(() => {
+                    const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                    const totalPrice = priceNum * quantity
+                    return `PKR ${totalPrice.toLocaleString('en-PK')}`
+                  })()}
+                </span>
               </div>
               <div className="flex justify-between mb-2">
                 <span className="font-sans text-sm text-text-grey">Shipping</span>
-                <span className="font-sans text-sm text-white">PKR 500</span>
+                <span className="font-sans text-sm text-white">
+                  {(() => {
+                    const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                    const totalPrice = priceNum * quantity
+                    return totalPrice >= 20000 ? (
+                      <span className="text-gold font-semibold">Free Shipping</span>
+                    ) : (
+                      'PKR 500'
+                    )
+                  })()}
+                </span>
               </div>
               <div className="flex justify-between pt-2 border-t border-card-border">
                 <span className="font-sans text-lg font-semibold text-white">Total</span>
-                <span className="font-sans text-lg font-semibold text-gold">{product.price}</span>
+                <span className="font-sans text-lg font-semibold text-gold">
+                  {(() => {
+                    const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                    const totalPrice = priceNum * quantity
+                    const shipping = totalPrice >= 20000 ? 0 : 500
+                    const finalTotal = totalPrice + shipping
+                    return `PKR ${finalTotal.toLocaleString('en-PK')}`
+                  })()}
+                </span>
               </div>
+              {(() => {
+                const priceNum = parseInt(product.price.replace(/[^0-9]/g, ''))
+                const totalPrice = priceNum * quantity
+                if (totalPrice >= 20000) {
+                  return (
+                    <div className="mt-2 p-2 bg-gold/20 border border-gold/50 rounded-lg">
+                      <p className="font-sans text-xs text-gold text-center">
+                        🎉 You qualify for Free Shipping!
+                      </p>
+                    </div>
+                  )
+                }
+                return null
+              })()}
             </div>
           </div>
 
